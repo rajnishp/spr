@@ -7,8 +7,6 @@
 <meta name="description" content="" />
 <meta name="author" content="http://bootstraptaste.com" />
 <!-- css -->
-<link href="css/bootstrap.min.css" rel="stylesheet" />
-<link href="css/fancybox/jquery.fancybox.css" rel="stylesheet">
 <!-- <link href="css/jcarousel.css" rel="stylesheet" /> -->
 <link href="css/flexslider.css" rel="stylesheet" />
 <link href="css/style.css" rel="stylesheet" />
@@ -20,6 +18,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 
 
 <!-- =======================================================
@@ -30,17 +29,128 @@
 ======================================================= -->
 
 </head>
-<body>
+<body ng-app="myApp" ng-controller="myCtrl">
 <style type="text/css">
-	 .carousel-inner .active.left { left: -33%; }
-	.carousel-inner .next        { left:  33%; }
-	.carousel-inner .prev        { left: -33%; }
-	.carousel-control.left,.carousel-control.right {background-image:none;}
-	.item:not(.prev) {visibility: visible;}
-	.item.right:not(.prev) {visibility: hidden;}
-	.rightest{ visibility: visible;}
+	
+	.carousel-showmanymoveone .carousel-control {
+	   	width: 4%;
+	   	background-image: none;
+	}
+
+	.carousel-showmanymoveone .carousel-control.left {
+	   margin-left: 0;
+	}
+
+	.carousel-showmanymoveone .carousel-control.right {
+	   margin-right: 0;
+	}
+
+	.carousel-showmanymoveone .cloneditem-1,
+	.carousel-showmanymoveone .cloneditem-2,
+	.carousel-showmanymoveone .cloneditem-3 {
+	   display: none;
+	}
+
+	.carousel .item .col-xs-12 {
+	   padding: 0;
+	}
+
+
+	/* Medium Devices, Desktops */
+
+	@media only screen and (max-width: 992px) {
+	   .carousel .item .col-xs-12:nth-last-child(-n+2) {
+	      display: none;
+	   }
+	}
+
+	@media all and (min-width: 768px) {
+	   .carousel-showmanymoveone .carousel-inner > .active.left,
+	   .carousel-showmanymoveone .carousel-inner > .prev {
+	      left: -50%;
+	   }
+	   .carousel-showmanymoveone .carousel-inner > .active.right,
+	   .carousel-showmanymoveone .carousel-inner > .next {
+	      left: 50%;
+	   }
+	   .carousel-showmanymoveone .carousel-inner > .left,
+	   .carousel-showmanymoveone .carousel-inner > .prev.right,
+	   .carousel-showmanymoveone .carousel-inner > .active {
+	      left: 0;
+	   }
+	   .carousel-showmanymoveone .carousel-inner .cloneditem-1 {
+	      display: block;
+	   }
+	}
+
+	@media all and (min-width: 768px) and (transform-3d),
+	all and (min-width: 768px) and (-webkit-transform-3d) {
+	   .carousel-showmanymoveone .carousel-inner > .item.active.right,
+	   .carousel-showmanymoveone .carousel-inner > .item.next {
+	      -webkit-transform: translate3d(50%, 0, 0);
+	      transform: translate3d(50%, 0, 0);
+	      left: 0;
+	   }
+	   .carousel-showmanymoveone .carousel-inner > .item.active.left,
+	   .carousel-showmanymoveone .carousel-inner > .item.prev {
+	      -webkit-transform: translate3d(-50%, 0, 0);
+	      transform: translate3d(-50%, 0, 0);
+	      left: 0;
+	   }
+	   .carousel-showmanymoveone .carousel-inner > .item.left,
+	   .carousel-showmanymoveone .carousel-inner > .item.prev.right,
+	   .carousel-showmanymoveone .carousel-inner > .item.active {
+	      -webkit-transform: translate3d(0, 0, 0);
+	      transform: translate3d(0, 0, 0);
+	      left: 0;
+	   }
+	}
+
+	@media all and (min-width: 992px) {
+	   .carousel-showmanymoveone .carousel-inner > .active.left,
+	   .carousel-showmanymoveone .carousel-inner > .prev {
+	      left: -16.6%;
+	   }
+	   .carousel-showmanymoveone .carousel-inner > .active.right,
+	   .carousel-showmanymoveone .carousel-inner > .next {
+	      left: 16.6%;
+	   }
+	   .carousel-showmanymoveone .carousel-inner > .left,
+	   .carousel-showmanymoveone .carousel-inner > .prev.right,
+	   .carousel-showmanymoveone .carousel-inner > .active {
+	      left: 0;
+	   }
+	   .carousel-showmanymoveone .carousel-inner .cloneditem-2,
+	   .carousel-showmanymoveone .carousel-inner .cloneditem-3 {
+	      display: block;
+	   }
+	}
+
+	@media all and (min-width: 992px) and (transform-3d),
+	all and (min-width: 992px) and (-webkit-transform-3d) {
+	   .carousel-showmanymoveone .carousel-inner > .item.active.right,
+	   .carousel-showmanymoveone .carousel-inner > .item.next {
+	      -webkit-transform: translate3d(16.6%, 0, 0);
+	      transform: translate3d(16.6%, 0, 0);
+	      left: 0;
+	   }
+	   .carousel-showmanymoveone .carousel-inner > .item.active.left,
+	   .carousel-showmanymoveone .carousel-inner > .item.prev {
+	      -webkit-transform: translate3d(-16.6%, 0, 0);
+	      transform: translate3d(-16.6%, 0, 0);
+	      left: 0;
+	   }
+	   .carousel-showmanymoveone .carousel-inner > .item.left,
+	   .carousel-showmanymoveone .carousel-inner > .item.prev.right,
+	   .carousel-showmanymoveone .carousel-inner > .item.active {
+	      -webkit-transform: translate3d(0, 0, 0);
+	      transform: translate3d(0, 0, 0);
+	      left: 0;
+	   }
+	}
 
 </style>
+
 <div id="wrapper">
 	<!-- start header -->
 	<header>
@@ -76,48 +186,28 @@
 	</header>
 	
 	<section id="content">
-		<div class="container">
-				
-			<div class="col-md-12">
-		        <div class="carousel slide" id="myCarousel">
-		          <div class="carousel-inner">
-		                <div class="item active">
-		                  <div class="col-lg-2 col-xs-4 col-md-2 col-sm-3">
-		                  <a href="#"><img src="http://lorempixel.com/400/200/sports" class="img-responsive">1</a></div>
-		                </div>
-		                <div class="item">
-		                  <div class="col-lg-2 col-xs-4 col-md-2 col-sm-3">
-		                  <a href="#"><img src="http://lorempixel.com/400/200/" class="img-responsive">2</a></div>
-		                </div>
-		                <div class="item">
-		                  <div class="col-lg-2 col-xs-4 col-md-2 col-sm-3">
-		                  <a href="#"><img src="http://lorempixel.com/400/200/sports" class="img-responsive">3</a></div>
-		                </div>
-		                <div class="item">
-		                  <div class="col-lg-2 col-xs-4 col-md-2 col-sm-3">
-		                  <a href="#"><img src="http://lorempixel.com/400/200/" class="img-responsive">4</a></div>
-		                </div>
-		                <div class="item">
-		                  <div class="col-lg-2 col-xs-4 col-md-2 col-sm-3">
-		                  <a href="#"><img src="http://lorempixel.com/400/200/sports" class="img-responsive">5</a></div>
-		                </div>
-		                <div class="item">
-		                  <div class="col-lg-2 col-xs-4 col-md-2 col-sm-3">
-		                  <a href="#"><img src="http://lorempixel.com/400/200/" class="img-responsive">6</a></div>
-		                </div>
-		                <div class="item">
-		                  <div class="col-lg-2 col-xs-4 col-md-2 col-sm-3">
-		                  <a href="#"><img src="http://lorempixel.com/400/200/sports" class="img-responsive">7</a></div>
-		                </div>
-		                <div class="item">
-		                  <div class="col-lg-2 col-xs-4 col-md-2 col-sm-3">
-		                  <a href="#"><img src="http://lorempixel.com/400/200/" class="img-responsive">8</a></div>
-		                </div>
-		          </div>
-		          <a class="left carousel-control" href="#myCarousel" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
-		          <a class="right carousel-control" href="#myCarousel" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
-		        </div>
-		    </div>
+		<div class="container" style="width: auto">
+
+
+		    <div class="row">
+			   <div class="col-md-12">
+
+			      <div class="carousel carousel-showmanymoveone slide" id="carousel-tilenav" data-interval="false">
+			         <div class="carousel-inner">
+			         
+			            <div class="item {{ (current == $index)?'active':''}}" ng-repeat="img in images">
+			               <div class="col-xs-12 col-sm-6 col-md-2">
+			                  <a ng-click="loadImg($index)"><img src="{{img}}" style="max-width: 80px" ></a>
+			               </div>
+			            </div>
+			            
+			         </div>
+			         <a class="left carousel-control" href="#carousel-tilenav" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
+			         <a class="right carousel-control" href="#carousel-tilenav" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
+			      </div>
+			   </div>
+			</div>
+
 
             <div class="row">                    
 				<div class="col-lg-12">
@@ -126,26 +216,31 @@
 							<div class="box">
 								<div class="box-gray aligncenter">
 
-									<div class="post-slider">
-										<div class="post-heading">
+									<img src="{{images[current]}}" alt="" />
+
+
+									<!-- <div class="post-slider">
+										<!-- <div class="post-heading">
 											<h3><a href="#">This is an example of slider post format</a></h3>
-										</div>
+										</div> -->
 										<!-- start flexslider -->
-										<div id="post-slider" class="flexslider">
+										<!-- <div id="post-slider" class="flexslider">
 											<ul class="slides">
-												<li>
-												<img src="img/harley-davidson-design-patent-1919.png" alt="" />
+												<li ng-repeat="img in images">
+												<img src="{{img}}" alt="" />
 												</li>
+
 												<li>
-												<img src="img/dummies/blog/img2.jpg" alt="" />
+												<img src="http://placehold.it/500/0054A6/fff/&amp;text=2" alt="" />
 												</li>
 												<li>
 												<img src="img/dummies/blog/img3.jpg" alt="" />
 												</li>
+												
 											</ul>
 										</div>
 										<!-- end flexslider -->
-									</div>
+									<!-- </div>   -->
 
 								</div>
 								
@@ -160,18 +255,18 @@
 									<p>
 									Application Process. The design patent application is relatively simple. The drawings are the most important part, particularly the difference between solid lines and dashed lines. The application process takes about a year from application to issuance. Budget about $2-3,000 in total costs for most design patents, and perhaps a little more for digital and UI design patent. This is much cheaper than a utility patent, which runs between $8-20,000.
 
-Non-Functional. Where utility patents protection functional inventions, design patents protect “non-functional” inventions. Non-functional is defined loosely. The design patent statute limits protection to the “ornamental” design of a product:
+									Non-Functional. Where utility patents protection functional inventions, design patents protect “non-functional” inventions. Non-functional is defined loosely. The design patent statute limits protection to the “ornamental” design of a product:
 
-    Whoever invents any new, original and ornamental design for an article of manufacture may obtain a patent therefor… 35 USC § 171.
+									    Whoever invents any new, original and ornamental design for an article of manufacture may obtain a patent therefor… 35 USC § 171.
 
-But courts interpret “ornamental” to really mean “non-functional.” Other courts have further interpreted “non-functional designs” to mean something like any design that is not entirely dictated by function. In practice, most industrial designs are eligible for design patent protection, even if the designs are partly functional.
+									But courts interpret “ornamental” to really mean “non-functional.” Other courts have further interpreted “non-functional designs” to mean something like any design that is not entirely dictated by function. In practice, most industrial designs are eligible for design patent protection, even if the designs are partly functional.
 
-    The patent statute says design patents are available to protect the “ornamental design for an article of manufacture.”
+									    The patent statute says design patents are available to protect the “ornamental design for an article of manufacture.”
 
-        which really means design patents protect “non-functional designs”
-            which really means that design patents protect anything except designs solely “dictated by function.”
+									        which really means design patents protect “non-functional designs”
+									            which really means that design patents protect anything except designs solely “dictated by function.”
 
-A design’s functionality will only make it non-patentable if its overall appearance is “dictated by function.” That is, if the design is governed solely by the product’s function, the design cannot be patented. On the other hand, if alternative designs are available for performing the same function, the design is not dictated solely by its function, and it can be patented. PHG Technologies v. St. John Companies, Inc., 469 F.3d 1361 (Fed Cir 2006).
+									A design’s functionality will only make it non-patentable if its overall appearance is “dictated by function.” That is, if the design is governed solely by the product’s function, the design cannot be patented. On the other hand, if alternative designs are available for performing the same function, the design is not dictated solely by its function, and it can be patented. PHG Technologies v. St. John Companies, Inc., 469 F.3d 1361 (Fed Cir 2006).
 
 									</p>
 										
@@ -192,7 +287,7 @@ A design’s functionality will only make it non-patentable if its overall appea
 					</div>
 				</div>
 			</div>
-			<!-- end divider -->
+			<!-- end divider -->	
 		
 
 		</div>
@@ -284,27 +379,18 @@ A design’s functionality will only make it non-patentable if its overall appea
     ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 <script type="text/javascript">
-	$('#myCarousel').carousel({
-	  interval: 40000
-	});
 
-	$('.carousel .item').each(function(){
-	  var next = $(this).next();
-	  if (!next.length) {
-	    next = $(this).siblings(':first');
-	  }
-	  next.children(':first-child').clone().appendTo($(this));
+	
 
-	  if (next.next().length>0) {
+
+
+	$(window).load(function() {
+		// executes when complete page is fully loaded, including all frames, objects and images
+		console.log("window is loaded");
 	 
-	      next.next().children(':first-child').clone().appendTo($(this)).addClass('rightest');
-	      
-	  }
-	  else {
-	      $(this).siblings(':first').children(':first-child').clone().appendTo($(this));
-	     
-	  }
+		// window load  
 	});
+
 </script>
 
 <script src="js/jquery.js"></script>
@@ -318,6 +404,59 @@ A design’s functionality will only make it non-patentable if its overall appea
 <script src="js/jquery.flexslider.js"></script>
 <script src="js/animate.js"></script>
 <script src="js/custom.js"></script>
+
+<script>
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope,$timeout) {
+	$scope.images = ["https://patentimages.storage.googleapis.com/US6257486B1/US06257486-20010710-D00000.png",
+				"https://patentimages.storage.googleapis.com/US6257486B1/US06257486-20010710-D00001.png",
+				"https://patentimages.storage.googleapis.com/US6257486B1/US06257486-20010710-D00002.png",
+				"https://patentimages.storage.googleapis.com/US6257486B1/US06257486-20010710-D00003.png",
+				"https://patentimages.storage.googleapis.com/US6257486B1/US06257486-20010710-D00004.png",
+				"https://patentimages.storage.googleapis.com/US6257486B1/US06257486-20010710-D00005.png",
+				"https://patentimages.storage.googleapis.com/US6257486B1/US06257486-20010710-D00006.png",
+				"https://patentimages.storage.googleapis.com/US6257486B1/US06257486-20010710-D00007.png"
+				];
+
+	$scope.current = 0;
+
+	$scope.loadImg = function(index){
+		$scope.current = index;
+	}    
+
+    $scope.carousel = function(){
+    	
+  		$('.carousel-showmanymoveone .item').each(function(){
+    		var itemToClone = $(this);
+    		console.log("i got called",itemToClone);
+
+		    for (var i=1;i<6;i++) {
+		      itemToClone = itemToClone.next();
+
+		      // wrap around if at end of item collection
+		      if (!itemToClone.length) {
+		        itemToClone = $(this).siblings(':first');
+		      }
+
+		      // grab item, clone, add marker class, add to collection
+		      itemToClone.children(':first-child').clone()
+		        .addClass("cloneditem-"+(i))
+		        .appendTo($(this));
+		    }
+
+		}
+
+		);
+		$('.flexslider').flexslider();
+	};
+	$timeout(function() {
+            $scope.carousel();
+
+        }, 1000);
+	
+});
+</script>
+
 
 </body>
 </html>
